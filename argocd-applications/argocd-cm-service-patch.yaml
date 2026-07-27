@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-cm-service-patch
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/learnandgrow459-ui/istio_bookinfo_sample_app.git
+    targetRevision: master
+    path: argocd-automation/argocd-cm-service-patch
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

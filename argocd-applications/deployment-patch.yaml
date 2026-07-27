@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-automation
+  name: argocd-deploy-patch
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "8"
+    argocd.argoproj.io/sync-wave: "9"
 
 spec:
   project: default
@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/learnandgrow459-ui/istio_bookinfo_sample_app.git
     targetRevision: master
-    path: argocd-automation
+    path: argocd-automation/pod_reloader_annotation
 
   destination:
     server: https://kubernetes.default.svc
