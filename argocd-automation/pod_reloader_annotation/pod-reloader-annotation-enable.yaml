@@ -8,3 +8,4 @@ spec:
     metadata:
       annotations:
         reloader.stakater.com/auto: "true"
+        configmap.reloader.stakater.com/reload: "argocd-cmd-params-cm"
